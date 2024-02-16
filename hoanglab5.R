@@ -1,4 +1,5 @@
 # Christine Hoang
+# Steve Jobs
 
 ramen <- read_csv("ramen-ratings.csv")
 ramen
@@ -14,3 +15,19 @@ ggplot(filter(ramen, Country == "USA"), aes(x = Style, y = Stars, color = Style)
 
 #Create a new tibble that only contains data from Japan, India, Taiwan, and the USA. 
 #Then, create a boxplot that shows the distribution of stars by style for each country on a subplot with two subplots per row.
+
+filtered_ramen<-ramen %>%
+  filter(Country %in% c("Japan", "India", "Taiwan", "USA"))
+
+filtered_ramen
+
+ggplot(filtered_ramen, aes(x = Style, y = Stars, color = Style)) + geom_boxplot() + facet_wrap(~Country, nrow = 2)
+
+#Create a histogram of the tibble you created in step 5 that uses 12 bins to display the distribution of the Stars values.
+ggplot(filtered_ramen, aes(x = Stars, fill = Style)) +
+  geom_histogram(stat = "count", bins = 12)
+
+#Ramen packs and bowls have the most received ratings and also the highest rated among other styles.
+#Ramen cups receive middle to average ratings.
+
+
